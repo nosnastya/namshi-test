@@ -58,13 +58,14 @@ export const addSlidersEvents = () => {
         const x = e.pageX - slider.offsetLeft;
         const walk = (x - startX) * 3; //scroll-fast
         slider.scrollLeft = scrollLeft - walk;
-        console.log(walk);
     });
 };
 
 
 //main UI functions
 let UIController = (function () {
+    //check which actor was clicked, generate his template and update url
+
     return {
 
         stickyHeader: function () {
@@ -139,7 +140,6 @@ let UIController = (function () {
         },
 
         init: function () {
-            console.log('Application has started.');
             this.makeTabs();
             this.triggerMenu();
             openImage();
@@ -151,8 +151,24 @@ let UIController = (function () {
         }
     }
 })();
-
-
+const renderActorPage = (id) => {
+    if (window.location.href.indexOf("actor") > 1) {
+        actorsRendered = false;
+        renderActorsView(id);
+    }
+};
+const getClickedActorId = () =>{
+    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
+    resultsArr.forEach(id => id.addEventListener('click', function (e) {
+        let actorsId = id.getAttribute('id');
+        renderActorsView(actorsId);
+        // const stateObject = {page: "actor-profile"};
+        // const pageTitle = "Profile page";
+        // const url = `/#actor-${actorsId}`;
+        // history.pushState(stateObject, pageTitle, url);
+        renderActorPage(actorsId);
+    }));
+};
 
 
 //render cast for tab1 or tab2
@@ -197,23 +213,7 @@ const renderCastSlider = id => {
     document.querySelector(DOMstrings.sliderItemsCast).insertAdjacentHTML('afterbegin', markup);
 };
 
-//check which actor was clicked, generate his template and update url
-const getClickedActorId = () => {
-    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
-    resultsArr.forEach(id => id.addEventListener('click', function (e) {
-        let actorsId = id.getAttribute('id');
-        renderActorsView(actorsId);
-        const stateObject = {page: "actor-profile"};
-        const pageTitle = "Profile page";
-        const url = `/#actor-${actorsId}`;
-        history.replaceState(stateObject, pageTitle, url);
-        if (window.location.href.indexOf("actor") > 1) {
-            console.log('me')
-            actorsRendered = false;
-            renderActorsView(actorsId);
-        }
-    }));
-};
+
 //render view for tab1
 export const renderHomeView = () => {
     clearView();
@@ -233,8 +233,10 @@ export const renderCastView = () => {
         clearLoader();
         renderHome();
         UIController.init();
+        renderCast(actorsList, renderCastList);
         document.getElementById('tablink2').click();
-    }, 600)
+        getClickedActorId();
+    }, 600);
 };
 
 //render view for actor page

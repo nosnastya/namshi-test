@@ -57,8 +57,7 @@ export const clearLoader = () => {
 // Home
 export const renderHome = () => {
     const markup = home;
-
-    DOMstrings.mainContainer.innerHTML = markup;
+    DOMstrings.mainContainer.insertAdjacentHTML('afterbegin', markup);
 
 };
 // Clear view

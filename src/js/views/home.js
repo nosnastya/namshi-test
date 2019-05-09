@@ -1,3 +1,4 @@
+import favicon from '../../img/favicon.png';
 import posterPreview1 from '../../img/poster-preview-1.jpg';
 import posterPreview2 from '../../img/poster-preview-2.jpg';
 import posterPreview3 from '../../img/poster-preview-3.jpg';
