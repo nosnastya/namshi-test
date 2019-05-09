@@ -404,7 +404,7 @@ a.go-back{
 .modal {
     display: none;
     position: fixed;
-    z-index: 3;
+    z-index: 11;
     left: 0;
     top: 0;
     width: 100%;
@@ -519,10 +519,12 @@ a.go-back{
     padding-top: 3px;
 }
 .movie-rating_google-icon{
+    background: none;
+    border: none;
+    outline: none;
     display: inline-block;
     fill: rgba(0,0,0,0.38);
     height: 36px;
-    outline: none;
     padding: 5px;
     width: 36px;
     margin-left: 10px;
@@ -534,6 +536,12 @@ a.go-back{
 .movie-rating_google-icon:hover{
     transform: scale(1.3);
     -webkit-transform: scale(1.3);
+}
+.movie-rating_google-icon:focus {
+    outline: none;
+}
+.movie-rating_google-icon.active{
+    fill: #a31960;
 }
 .movie-more{
     display: none!important;
@@ -699,6 +707,7 @@ a.go-back{
 }
 .high .gridItems{
     transform: scale(1);
+    background: rgba(66, 66, 66, 0.7);
 }
 .high .slide img {
     margin-right: 0;
@@ -785,9 +794,11 @@ a.go-back{
     height: 250px;
     display: flex;
     align-items: start;
+    padding-left: 1px;
 }
 .castItems .grid-item{
     height: 200px;
+    margin-left: -5px;
 }
 .castItems span{
     height: 35px;
@@ -796,4 +807,8 @@ a.go-back{
 }
 .castItems .slide{
     min-width: 103px;
+}
+.castItems a{
+    display: block;
+    z-index: 2;
 }

@@ -18,7 +18,6 @@ export const openImage = () => {
             captionText.innerHTML = this.alt;
         };
     }
-
     let span = document.querySelector(DOMstrings.btnClose);
 
     span.onclick = function () {
@@ -75,6 +74,21 @@ let UIController = (function () {
             } else {
                 header.classList.remove("fixed-header");
             }
+        },
+        addRating: function() {
+            document.querySelector(DOMstrings.ratingBtnUp).addEventListener('click', function (e) {
+                document.querySelector(DOMstrings.ratingBtnUp).classList.toggle('active');
+                if ( document.querySelector(DOMstrings.ratingBtnDown).classList.contains('active')) {
+                    document.querySelector(DOMstrings.ratingBtnDown).classList.remove('active');
+                }            })
+        },
+        removeRating: function() {
+            document.querySelector(DOMstrings.ratingBtnDown).addEventListener('click', function (e) {
+                document.querySelector(DOMstrings.ratingBtnDown).classList.toggle('active');
+                if ( document.querySelector(DOMstrings.ratingBtnUp).classList.contains('active')) {
+                    document.querySelector(DOMstrings.ratingBtnUp).classList.remove('active');
+                }
+            })
         },
         makeTabs: function () {
 
@@ -142,9 +156,11 @@ let UIController = (function () {
         init: function () {
             this.makeTabs();
             this.triggerMenu();
-            openImage();
             this.triggerReadMore();
             addSlidersEvents();
+            this.removeRating();
+            this.addRating();
+            openImage();
             window.onscroll = function () {
                 UIController.stickyHeader()
             };
@@ -157,19 +173,6 @@ const renderActorPage = (id) => {
         renderActorsView(id);
     }
 };
-const getClickedActorId = () =>{
-    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
-    resultsArr.forEach(id => id.addEventListener('click', function (e) {
-        let actorsId = id.getAttribute('id');
-        renderActorsView(actorsId);
-        // const stateObject = {page: "actor-profile"};
-        // const pageTitle = "Profile page";
-        // const url = `/#actor-${actorsId}`;
-        // history.pushState(stateObject, pageTitle, url);
-        renderActorPage(actorsId);
-    }));
-};
-
 
 //render cast for tab1 or tab2
 const renderCast = (cast, func) => {
@@ -213,6 +216,18 @@ const renderCastSlider = id => {
     document.querySelector(DOMstrings.sliderItemsCast).insertAdjacentHTML('afterbegin', markup);
 };
 
+const getClickedActorId = () =>{
+    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
+    resultsArr.forEach(id => id.addEventListener('click', function (e) {
+        let actorsId = id.getAttribute('id');
+        renderActorsView(actorsId);
+        // const stateObject = {page: "actor-profile"};
+        // const pageTitle = "Profile page";
+        // const url = `/#actor-${actorsId}`;
+        // history.pushState(stateObject, pageTitle, url);
+        renderActorPage(actorsId);
+    }));
+};
 
 //render view for tab1
 export const renderHomeView = () => {
@@ -222,6 +237,7 @@ export const renderHomeView = () => {
         clearLoader();
         renderHome();
         UIController.init();
+        getClickedActorId();
     }, 600)
 };
 
@@ -234,6 +250,7 @@ export const renderCastView = () => {
         renderHome();
         UIController.init();
         renderCast(actorsList, renderCastList);
+        actorsRendered = true;
         document.getElementById('tablink2').click();
         getClickedActorId();
     }, 600);

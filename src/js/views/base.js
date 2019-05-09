@@ -14,7 +14,7 @@ export const DOMstrings = {
     dropdownContent: '.dropdown-content',
     sliderItems: '.gridItems',
     sliderItemsCast: '.castItems .gridItems',
-    sliderImages: '.slide img',
+    sliderImages: '.withPreview .slide img',
     imagesModal: 'imagesModal',
     modalContent: '.modal-content',
     modalCaption: '.modal-caption',
@@ -25,7 +25,9 @@ export const DOMstrings = {
     movieReadMoreBtnIcon: '.icon',
     movieReadMore: '.movie-more',
     castProfile: '.cast-profile',
-    goHome: '.go-back'
+    goHome: '.go-back',
+    ratingBtnUp: '.movie-rating_google-icon.up',
+    ratingBtnDown: '.movie-rating_google-icon.down'
 };
 
 export const elementStrings = {
