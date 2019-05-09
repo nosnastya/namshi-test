@@ -153,22 +153,7 @@ let UIController = (function () {
 })();
 
 
-//check which actor was clicked, generate his template and update url
-const getClickedActorId = () => {
-    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
-    resultsArr.forEach(id => id.addEventListener('click', function (e) {
-        let actorsId = id.getAttribute('id');
-        renderActorsView(actorsId);
-        const stateObject = {page: "actor-profile"};
-        const pageTitle = "Profile page";
-        const url = `/#actor-${actorsId}`;
-        history.pushState(stateObject, pageTitle, url);
-        if (window.location.href.indexOf("actor") > 1) {
-            actorsRendered = false;
-            renderActorsView(actorsId);
-        }
-    }));
-};
+
 
 //render cast for tab1 or tab2
 const renderCast = (cast, func) => {
@@ -212,7 +197,23 @@ const renderCastSlider = id => {
     document.querySelector(DOMstrings.sliderItemsCast).insertAdjacentHTML('afterbegin', markup);
 };
 
-
+//check which actor was clicked, generate his template and update url
+const getClickedActorId = () => {
+    const resultsArr = Array.from(document.querySelectorAll(DOMstrings.actorItem));
+    resultsArr.forEach(id => id.addEventListener('click', function (e) {
+        let actorsId = id.getAttribute('id');
+        renderActorsView(actorsId);
+        const stateObject = {page: "actor-profile"};
+        const pageTitle = "Profile page";
+        const url = `/#actor-${actorsId}`;
+        history.replaceState(stateObject, pageTitle, url);
+        if (window.location.href.indexOf("actor") > 1) {
+            console.log('me')
+            actorsRendered = false;
+            renderActorsView(actorsId);
+        }
+    }));
+};
 //render view for tab1
 export const renderHomeView = () => {
     clearView();

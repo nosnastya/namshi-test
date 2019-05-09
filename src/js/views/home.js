@@ -1,3 +1,15 @@
+import posterPreview1 from '../../img/poster-preview-1.jpg';
+import posterPreview2 from '../../img/poster-preview-2.jpg';
+import posterPreview3 from '../../img/poster-preview-3.jpg';
+import posterPreview4 from '../../img/poster-preview-4.jpg';
+import posterPreview5 from '../../img/poster-preview-5.jpg';
+import posterPreview6 from '../../img/poster-preview-6.jpg';
+import poster1 from '../../img/poster-1.jpg';
+import poster2 from '../../img/poster-2.jpg';
+import poster3 from '../../img/poster-3.jpg';
+import poster4 from '../../img/poster-4.jpg';
+import poster5 from '../../img/poster-5.jpg';
+import poster6 from '../../img/poster-6.jpg';
 export const home = `
 <header class="header">
         <div class="head">
@@ -7,7 +19,7 @@ export const home = `
             </div>
             <div class="head-menu">
                 <button class="dropdown-trigger corner">
-                    <img src="../../assets/img/menu.svg" alt="menu icon">
+                    <i class="ico menu-icon"></i>
                 </button>
                 <div class="dropdown-content">
                     <ul>
@@ -38,32 +50,32 @@ export const home = `
     <main>
         <!---Tab 1- Movie Info--->
         <section class="tabcontent" id="tab1">
-            <div class="withPreview slider-container wrapper">
+            <div class="with slider-container wrapper">
                 <main class="grid-item main">
                     <div class="gridItems">
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-1.jpg" data-src="assets/img/poster-1.jpg"
+                            <img src="${posterPreview1}" data-src="${poster1}"
                                  alt="Poster 1">
                         </div>
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-2.jpg" data-src="assets/img/poster-2.jpg"
+                            <img src="${posterPreview2}" data-src="${poster2}"
                                  alt="Poster 2">
 
                         </div>
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-3.jpg" data-src="assets/img/poster-3.jpg"
+                            <img src="${posterPreview3}" data-src="${poster3}"
                                  alt="Poster 3">
                         </div>
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-4.jpg" data-src="assets/img/poster-4.jpg"
+                            <img src="${posterPreview4}" data-src="${poster4}"
                                  alt="Poster 4">
                         </div>
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-5.jpg" data-src="assets/img/poster-5.jpg"
+                            <img src="${posterPreview5}" data-src="${poster5}"
                                  alt="Poster 5">
                         </div>
                         <div class="slide">
-                            <img src="../../assets/img/poster-preview-6.jpg" data-src="assets/img/poster-6.jpg"
+                            <img src="${posterPreview6}" data-src="${poster6}"
                                  alt="Poster 6">
 
                         </div>
@@ -140,7 +152,7 @@ export const home = `
 
                 </div>
             </div>
-              <div class="withPreview slider-container wrapper castItems">
+              <div class="with slider-container wrapper castItems">
                 <main class="grid-item main">
                     <div class="gridItems">
                       
@@ -155,7 +167,7 @@ export const home = `
             </div>
         </section>
     </main>
-    <!---Modal for images preview--->
+    <!---Modal for images --->
     <div id="imagesModal" class="modal">
         <a href="#" class="btn-close" aria-label="Close">
         <span>
